@@ -1,0 +1,6 @@
+quality_check,flagged_records,records_checked,flagged_pct
+Payment date before order,7436,15000,49.57333333333334
+Shipping date before order,7397,15000,49.31333333333333
+Shipment status/date conflict,3707,15000,24.713333333333335
+Cancelled order with Delivered shipment,938,15000,6.253333333333333
+"Cancelled, Delivered and Paid",782,15000,5.213333333333333

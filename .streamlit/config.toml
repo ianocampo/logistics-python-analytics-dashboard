@@ -1,0 +1,16 @@
+# STEP 112 - locked Ian Ocampo Data Portfolio accents.
+# This file must be at PROJECT_ROOT/.streamlit/config.toml
+[theme]
+base = "dark"
+primaryColor = "#14B8A6"
+backgroundColor = "#0B1423"
+secondaryBackgroundColor = "#142236"
+textColor = "#EAF2F8"
+font = "sans serif"
+
+# Make sidebar radio/multiselect controls match the main app theme.
+[theme.sidebar]
+primaryColor = "#14B8A6"
+backgroundColor = "#101D2D"
+secondaryBackgroundColor = "#142236"
+textColor = "#EAF2F8"

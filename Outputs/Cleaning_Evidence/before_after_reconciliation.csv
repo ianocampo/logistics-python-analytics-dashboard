@@ -1,0 +1,8 @@
+dataset,raw_rows,exact_duplicates_removed,cleaned_rows,rows_reconcile
+customers,5050,50,5000,True
+products,800,0,800,True
+orders,15075,75,15000,True
+order_items,37763,262,37501,True
+payments,15000,0,15000,True
+shipments,15000,0,15000,True
+returns,1200,0,1200,True

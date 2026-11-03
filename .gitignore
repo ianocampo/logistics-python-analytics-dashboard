@@ -1,0 +1,18 @@
+# Local Python & Jupyter state
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+.DS_Store
+Thumbs.db
+# Mac metadata
+._*
+
+# Local first-time publishing helper (not project source)
+/Publish_To_GitHub.command

@@ -1,0 +1,14 @@
+metric,value
+Total Orders,15000.0
+Total Shipments,15000.0
+Delivered Shipments,11680.0
+In Transit Shipments,2694.0
+Lost Shipments,161.0
+Returned to Sender Shipments,465.0
+Orders with Return Requests,1200.0
+Return Request Rate (%),8.0
+Baseline Eligible Lead Times,11122.0
+Baseline Average Delivery Days,4.003506563567703
+Baseline Median Delivery Days,4.0
+Chronology-Screened Lead Times,5667.0
+Screened Average Delivery Days,4.019410622904535

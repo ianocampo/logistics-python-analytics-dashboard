@@ -1,0 +1,18 @@
+LOGISTICS, DELIVERY & RETURNS INTELLIGENCE — EXECUTIVE SUMMARY
+Prepared by Ian Ocampo | Business & Digital Systems Integrator | Data Analytics & Business Intelligence
+
+- Scope: Seven source tables, including 15,000 distinct orders and 15,000 shipments, analyzed in Python.
+- Data preparation: 387 exact duplicate rows removed from 89,888 source rows, yielding 89,501 prepared records across seven entities.
+- Shipment statuses: 11,680 Delivered (77.87%), 2,694 In Transit, 465 Returned to Sender, and 161 Lost.
+- Delivery duration: 11,122 eligible recorded deliveries average 4.00 days; a chronology-screened subset of 5,667 averages 4.02 days.
+- Courier performance: Mean duration differences are small and rank order changes with stricter screening; no causal superiority is established.
+- Return requests: 1,200 of 15,000 orders (8.00%) have a recorded request, not necessarily a completed return.
+- Most common recorded return reason: Changed mind (182 of 1,200 requests; 15.17%).
+- Category association: Home & Kitchen has 352 requests among 4,076 orders containing that category (8.64%), not an item-specific return rate.
+- Quality reviews: 7,436 payment-before-order, 7,397 shipping-before-order, and 3,707 shipment status/date conflicts are documented as overlapping review flags.
+- Recommended priority 1: Reconcile cross-system chronology and status transitions before treating descriptive indicators as operating SLAs.
+- Recommended priority 2: Capture exact returned item IDs and validate reasons/outcomes to support credible item-level analysis.
+- Deliverables: A six-page Streamlit dashboard, five exported charts, prepared data tables, reproducible Python notebook, executive PDF, and 85/85 documented validation checks.
+
+These findings describe supplied synthetic public demonstration data. They are not live operational outcomes.
+Portfolio: https://data.ianocamposystems.com

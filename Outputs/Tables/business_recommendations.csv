@@ -1,0 +1,3 @@
+id,recommendation,action,success_measure
+R01,Implement automated chronology and cross-system status reconciliation.,"Validate linked order, payment, shipment, and delivery events; flag exceptions before operational reporting.",Number and percentage of unresolved chronology and status exceptions.
+R02,Strengthen return-reason tracking and category-level investigation.,"Record returned product IDs, verify return reasons, and investigate recurring category-related issues.",Return-reason completeness and validated item-level return rates over time.

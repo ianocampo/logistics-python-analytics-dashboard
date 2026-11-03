@@ -1,0 +1,14 @@
+dataset,column,missing_after_deduplication,treatment
+customers,gender,298,Preserved and profiled; not imputed for Option B KPIs
+customers,age,149,Preserved and profiled; not imputed for Option B KPIs
+customers,email,104,Preserved and profiled; not imputed for Option B KPIs
+customers,phone,145,Preserved and profiled; not imputed for Option B KPIs
+customers,loyalty_tier,264,Source retained; separate reporting label Unknown
+products,stock_qty,19,Preserved and profiled; not imputed for Option B KPIs
+orders,discount_pct,756,Retained; missing-discount flag
+orders,shipping_fee,470,Retained; missing-fee flag
+order_items,unit_price_at_purchase,2236,Retained; excluded from price-based calculations
+payments,amount_paid,878,Preserved and profiled; not imputed for Option B KPIs
+shipments,delivered_date,729,Retained; missing-date flag; lead-time exclusion
+returns,refunded_flag,110,Retained; separate Unknown label and review flag
+returns,refund_amount,187,Retained; refund review and missing-amount flags

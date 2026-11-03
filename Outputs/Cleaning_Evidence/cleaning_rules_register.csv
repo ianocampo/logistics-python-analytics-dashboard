@@ -1,0 +1,21 @@
+requirement,validation_test,records_checked,affected_or_flagged,documented_treatment
+01 Duplicate removal,customers,5050,50,All-column exact duplicate; keep first
+01 Duplicate removal,products,800,0,All-column exact duplicate; keep first
+01 Duplicate removal,orders,15075,75,All-column exact duplicate; keep first
+01 Duplicate removal,order_items,37763,262,All-column exact duplicate; keep first
+01 Duplicate removal,payments,15000,0,All-column exact duplicate; keep first
+01 Duplicate removal,shipments,15000,0,All-column exact duplicate; keep first
+01 Duplicate removal,returns,1200,0,All-column exact duplicate; keep first
+02 Missing values,13 source fields with missing values,89501,6345,"Retain, flag, or use separate reporting labels"
+03 Categories,Changed product category labels,800,137,Original category preserved; canonical label added
+04 Mixed dates,order_datetime,15000,0,Explicit date-format parsing; original retained
+04 Mixed dates,ship_date,15000,0,Explicit date-format parsing; original retained
+04 Mixed dates,delivered_date,15000,0,Explicit date-format parsing; original retained
+04 Mixed dates,payment_date,15000,0,Explicit date-format parsing; original retained
+05 Currency conversion,unit_price_at_purchase to unit_price_numeric,37501,0,Remove peso symbol; parse numeric; retain original
+06 Join integrity,Item to product,37501,129,Unmatched references retained and flagged
+06 Join integrity,Item to order,37501,0,Unmatched references retained and flagged
+06 Join integrity,Order to customer,15000,43,Unmatched references retained and flagged
+06 Join integrity,Payment to order,15000,0,Unmatched references retained and flagged
+06 Join integrity,Shipment to order,15000,0,Unmatched references retained and flagged
+06 Join integrity,Return to order,1200,0,Unmatched references retained and flagged

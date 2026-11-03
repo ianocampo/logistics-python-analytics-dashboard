@@ -1,0 +1,86 @@
+check,result,evidence
+Cleaned file exists: customers,PASS,Outputs/Cleaned_Data/customers_clean.csv
+Cleaned row count: customers,PASS,"5,000 records"
+Cleaned columns: customers,PASS,14 columns
+Cleaned CSV matches Python: customers,PASS,SHA-256 content verification
+Cleaned file exists: products,PASS,Outputs/Cleaned_Data/products_clean.csv
+Cleaned row count: products,PASS,800 records
+Cleaned columns: products,PASS,10 columns
+Cleaned CSV matches Python: products,PASS,SHA-256 content verification
+Cleaned file exists: orders,PASS,Outputs/Cleaned_Data/orders_clean.csv
+Cleaned row count: orders,PASS,"15,000 records"
+Cleaned columns: orders,PASS,12 columns
+Cleaned CSV matches Python: orders,PASS,SHA-256 content verification
+Cleaned file exists: order_items,PASS,Outputs/Cleaned_Data/order_items_clean.csv
+Cleaned row count: order_items,PASS,"37,501 records"
+Cleaned columns: order_items,PASS,11 columns
+Cleaned CSV matches Python: order_items,PASS,SHA-256 content verification
+Cleaned file exists: payments,PASS,Outputs/Cleaned_Data/payments_clean.csv
+Cleaned row count: payments,PASS,"15,000 records"
+Cleaned columns: payments,PASS,10 columns
+Cleaned CSV matches Python: payments,PASS,SHA-256 content verification
+Cleaned file exists: shipments,PASS,Outputs/Cleaned_Data/shipments_clean.csv
+Cleaned row count: shipments,PASS,"15,000 records"
+Cleaned columns: shipments,PASS,18 columns
+Cleaned CSV matches Python: shipments,PASS,SHA-256 content verification
+Cleaned file exists: returns,PASS,Outputs/Cleaned_Data/returns_clean.csv
+Cleaned row count: returns,PASS,"1,200 records"
+Cleaned columns: returns,PASS,12 columns
+Cleaned CSV matches Python: returns,PASS,SHA-256 content verification
+Original-to-cleaned record reconciliation,PASS,"387 exact duplicates removed; 89,501 records retained"
+Dashboard export exists: shipments_dashboard.csv,PASS,Outputs/Dashboard_Data/shipments_dashboard.csv
+Dashboard export matches Python: shipments_dashboard.csv,PASS,"15,000 records"
+Dashboard export exists: returns_dashboard.csv,PASS,Outputs/Dashboard_Data/returns_dashboard.csv
+Dashboard export matches Python: returns_dashboard.csv,PASS,"1,200 records"
+Dashboard export exists: order_category_dashboard.csv,PASS,Outputs/Dashboard_Data/order_category_dashboard.csv
+Dashboard export matches Python: order_category_dashboard.csv,PASS,"33,165 records"
+Dashboard export exists: executive_kpis.csv,PASS,Outputs/Dashboard_Data/executive_kpis.csv
+Dashboard export matches Python: executive_kpis.csv,PASS,13 records
+13 KPI labels reconcile,PASS,All 13 executive KPIs
+Notebook KPI: Total Orders,PASS,15000.000000
+Notebook KPI: Total Shipments,PASS,15000.000000
+Notebook KPI: Delivered Shipments,PASS,11680.000000
+Notebook KPI: In Transit Shipments,PASS,2694.000000
+Notebook KPI: Lost Shipments,PASS,161.000000
+Notebook KPI: Returned to Sender Shipments,PASS,465.000000
+Notebook KPI: Orders with Return Requests,PASS,1200.000000
+Notebook KPI: Return Request Rate (%),PASS,8.000000
+Notebook KPI: Baseline Eligible Lead Times,PASS,11122.000000
+Notebook KPI: Baseline Average Delivery Days,PASS,4.003507
+Notebook KPI: Baseline Median Delivery Days,PASS,4.000000
+Notebook KPI: Chronology-Screened Lead Times,PASS,5667.000000
+Notebook KPI: Screened Average Delivery Days,PASS,4.019411
+Dashboard CSV KPI: Total Orders,PASS,15000.000000
+Dashboard CSV KPI: Total Shipments,PASS,15000.000000
+Dashboard CSV KPI: Delivered Shipments,PASS,11680.000000
+Dashboard CSV KPI: In Transit Shipments,PASS,2694.000000
+Dashboard CSV KPI: Lost Shipments,PASS,161.000000
+Dashboard CSV KPI: Returned to Sender Shipments,PASS,465.000000
+Dashboard CSV KPI: Orders with Return Requests,PASS,1200.000000
+Dashboard CSV KPI: Return Request Rate (%),PASS,8.000000
+Dashboard CSV KPI: Baseline Eligible Lead Times,PASS,11122.000000
+Dashboard CSV KPI: Baseline Average Delivery Days,PASS,4.003507
+Dashboard CSV KPI: Baseline Median Delivery Days,PASS,4.000000
+Dashboard CSV KPI: Chronology-Screened Lead Times,PASS,5667.000000
+Dashboard CSV KPI: Screened Average Delivery Days,PASS,4.019411
+Shipment status denominator,PASS,"15,000 total shipments"
+Lead-time sample is internally consistent,PASS,"Baseline n=11,122; screened n=5,667"
+Chart data: lead-time distribution,PASS,"11,122 eligible deliveries"
+Chart data: shipment status distribution,PASS,4 shipment statuses
+Chart data: return reasons,PASS,"1,200 return requests"
+Chart data: courier averages,PASS,5 couriers
+Chart data: category return-request rates,PASS,9 reporting categories
+Home & Kitchen example,PASS,"352 / 4,076 = 8.64% order-category association"
+Chart image exists: delivery_lead_time_histogram.png,PASS,delivery_lead_time_histogram.png
+Chart image valid: delivery_lead_time_histogram.png,PASS,PNG 2969 x 1806
+Chart image exists: courier_average_delivery_days.png,PASS,courier_average_delivery_days.png
+Chart image valid: courier_average_delivery_days.png,PASS,PNG 2969 x 1806
+Chart image exists: return_reasons_distribution.png,PASS,return_reasons_distribution.png
+Chart image valid: return_reasons_distribution.png,PASS,PNG 2965 x 1806
+Chart image exists: category_return_request_rate.png,PASS,category_return_request_rate.png
+Chart image valid: category_return_request_rate.png,PASS,PNG 3269 x 1954
+Chart image exists: shipment_status_distribution.png,PASS,shipment_status_distribution.png
+Chart image valid: shipment_status_distribution.png,PASS,PNG 2965 x 1806
+Cleaning evidence: before_after_reconciliation.csv,PASS,7 documented rows
+Cleaning evidence: missing_value_decisions.csv,PASS,13 documented rows
+Cleaning evidence: cleaning_rules_register.csv,PASS,20 documented rows
