@@ -5,11 +5,14 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 VENV_DIR="$HOME/.cache/ios-dashboard-capture-env"
+DASHBOARD_PORT="${DASHBOARD_PORT:-8501}"
+export DASHBOARD_PORT
 
 echo "========================================================"
 echo "  Python Portfolio | Clean 6-Page Dashboard Capture"
 echo "========================================================"
 echo "Project: $REPO_DIR"
+echo "Dashboard URL: http://localhost:$DASHBOARD_PORT"
 echo ""
 
 if [ ! -f "$REPO_DIR/logistics_delivery_dashboard.py" ]; then
@@ -18,11 +21,11 @@ if [ ! -f "$REPO_DIR/logistics_delivery_dashboard.py" ]; then
 fi
 
 # Streamlit health endpoint confirms that the user's local app is running.
-if ! curl -fsS --max-time 4 "http://127.0.0.1:8501/_stcore/health" >/dev/null; then
-  echo "Dashboard is not currently running at http://localhost:8501"
+if ! curl -fsS --max-time 4 "http://127.0.0.1:$DASHBOARD_PORT/_stcore/health" >/dev/null; then
+  echo "Dashboard is not currently running at http://localhost:$DASHBOARD_PORT"
   echo "Start your Streamlit dashboard first, then rerun this command."
   echo "Example (from the repository folder):"
-  echo "  python -m streamlit run logistics_delivery_dashboard.py"
+  echo "  python -m streamlit run logistics_delivery_dashboard.py --server.port $DASHBOARD_PORT"
   exit 1
 fi
 
