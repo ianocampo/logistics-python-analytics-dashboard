@@ -35,6 +35,28 @@ def check_png(path: Path) -> None:
     if (width, height) != (1920, 1080):
         raise RuntimeError(f"Unexpected image size: {path}: {width}x{height}")
 
+def dismiss_streamlit_help_popup(page) -> None:
+    # Streamlit may display its own "Help agents write better apps" panel
+    # in new browser sessions. The panel obscures dashboard content.
+    title = page.get_by_text("Help agents write better apps", exact=True)
+    if title.count() == 0 or not title.first.is_visible():
+        return
+
+    # Dismiss INSIDE the headless capture browser. Closing the notice
+    # in the user's regular Chrome window does not affect this session.
+    dismiss = page.get_by_text("Don't show again", exact=True)
+    if dismiss.count() and dismiss.first.is_visible():
+        dismiss.first.click(timeout=5000)
+        page.wait_for_timeout(400)
+
+    # Never save a screenshot with the Streamlit help popup still visible.
+    if title.count() and title.first.is_visible():
+        raise RuntimeError(
+            "Streamlit help popup is still open; no screenshot saved. "
+            "Please send the Terminal output so we can update its selector."
+        )
+
+
 def capture() -> None:
     # Headless Chrome produces webpage-only images, excluding browser tabs,
     # bookmarks, address bar and personal browser side panels.
@@ -58,6 +80,7 @@ def capture() -> None:
             page.goto(APP_URL, wait_until="domcontentloaded", timeout=90000)
             page.get_by_role("tab", name=PAGES[0][0], exact=True).wait_for(timeout=90000)
             page.wait_for_timeout(2500)
+            dismiss_streamlit_help_popup(page)
 
             # Screenshot-only CSS: hide development toolbar, not dashboard content.
             page.add_style_tag(content="""
@@ -93,6 +116,7 @@ def capture() -> None:
                     }
                 """)
                 page.wait_for_timeout(500)
+                dismiss_streamlit_help_popup(page)
 
                 body = page.locator("body").inner_text().lower()
                 if "file bundle not present in this local installation" in body:
