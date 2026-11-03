@@ -1,18 +1,24 @@
 # Logistics, Delivery & Returns Intelligence
 
-**Python Analytics · Interactive Streamlit Dashboard · Operational Decision Support**
+**From 15,000 shipment records to clearer delivery and returns decisions.**
 
-**Ian Ocampo** — Business & Digital Systems Integrator | Data Analytics & Business Intelligence
+An end-to-end **Python analytics case study** combining seven synthetic datasets, documented cleaning and data-quality validation, and a **six-page interactive Streamlit dashboard**. The project examines what the records show, what they cannot reliably prove, and which operating questions deserve action.
 
-[Data Analytics Portfolio](https://data.ianocamposystems.com) · [Executive Case Study (PDF)](Docs/Executive_Report.pdf) · [One-Page Insights (PDF)](Docs/One_Page_Insights_Summary.pdf) · [Documented Python Notebook](Notebook/Logistics_Analysis_Documented.ipynb) · [Run Dashboard Locally](#run-the-dashboard)
+**Ian Ocampo** · Business & Digital Systems Integrator · Data Analytics & Business Intelligence
+
+[**Dashboard Gallery**](#six-page-dashboard-gallery) · [**Executive Case Study (PDF)**](Docs/Executive_Report.pdf) · [**One-Page Insights (PDF)**](Docs/One_Page_Insights_Summary.pdf) · [**Python Notebook**](Notebook/Logistics_Analysis_Documented.ipynb) · [**Data Analytics Portfolio**](https://data.ianocamposystems.com)
+
+[![Clean executive overview of the six-page Python logistics and returns dashboard](Assets/dashboard_01_overview_1920x1080.png)](Assets/dashboard_01_overview_1920x1080.png)
+
+*Actual Streamlit dashboard preview — Page 01 / 06. Click to view full resolution. The public interactive app has not yet been deployed.*
+
+### The business question
+
+> **How well are we delivering, and what drives recorded return requests?**
+
+**Value of the work:** A clear, inspectable view of operational outcomes, courier comparisons, return-request patterns, and critical source-data limitations—with evidence-backed recommendations instead of unsupported performance claims.
 
 ---
-
-## The business question
-
-**How well are we delivering, and what drives recorded return requests?**
-
-This end-to-end analytics case study combines seven **synthetic** logistics and order datasets to examine shipment statuses, recorded delivery durations, courier patterns, customer return requests, and source-data reliability. The goal is to turn raw operational records into defensible findings and actionable priorities—not to present unreliable figures as verified service-level performance.
 
 ## Executive snapshot
 
@@ -34,9 +40,7 @@ Six **clean 1920 × 1080 captures** taken from the actual Streamlit application.
 
 ### 01 — Overview | Operational snapshot
 
-[![Overview dashboard showing recorded shipment status, average delivery duration, return-request rate and visuals](Assets/dashboard_01_overview_1920x1080.png)](Assets/dashboard_01_overview_1920x1080.png)
-
-The executive landing view summarizes shipment coverage and recorded outcomes. Its date-screening selector makes the delivery-duration sample explicit, and its notes separate descriptive statuses from verified SLAs.
+The **full-width executive overview screenshot appears at the top of this README**. [Open the full-resolution overview](Assets/dashboard_01_overview_1920x1080.png). The overview makes its delivery-duration screening sample explicit and separates recorded shipment status from verified service-level performance.
 
 | **02 — Courier Performance** | **03 — Returns Intelligence** |
 | :--- | :--- |
