@@ -82,12 +82,18 @@ def capture() -> None:
             page.wait_for_timeout(2500)
             dismiss_streamlit_help_popup(page)
 
-            # Screenshot-only CSS: hide development toolbar, not dashboard content.
+            # Screenshot-only CSS: hide the Streamlit toolbar AND collapse
+            # its reserved 4.65rem top gap. The real dashboard CSS is unchanged.
             page.add_style_tag(content="""
+                [data-testid="stHeader"] { display: none !important; }
                 [data-testid="stToolbar"],
                 [data-testid="stDecoration"],
                 [data-testid="stStatusWidget"],
                 #MainMenu { visibility: hidden !important; }
+                html body [data-testid="stMainBlockContainer"],
+                html body .block-container {
+                    padding-top: 8px !important;
+                }
             """)
 
             for number, (label, page_title, filename) in enumerate(PAGES, 1):
@@ -117,6 +123,37 @@ def capture() -> None:
                 """)
                 page.wait_for_timeout(500)
                 dismiss_streamlit_help_popup(page)
+
+                # Streamlit can recreate its block container when switching tabs.
+                # Override ONLY the capture browser's top padding each time.
+                # A normal window.scrollTo is insufficient: the blank band is
+                # created by CSS padding reserved for Streamlit's toolbar.
+                page.evaluate("""
+                    () => {
+                        const elements = document.querySelectorAll(
+                            '[data-testid="stMainBlockContainer"], .block-container'
+                        );
+                        for (const element of elements) {
+                            element.style.setProperty(
+                                'padding-top', '8px', 'important'
+                            );
+                        }
+                    }
+                """)
+                page.wait_for_timeout(300)
+
+                # Prevent saving a frame whose dashboard masthead is clipped
+                # or still displaced by the original 74px reserved toolbar gap.
+                masthead = page.locator(".brand-masthead").first
+                masthead.wait_for(state="visible", timeout=15000)
+                masthead_bounds = masthead.bounding_box()
+                if not masthead_bounds or not (
+                    0 <= masthead_bounds["y"] <= 32
+                ):
+                    raise RuntimeError(
+                        f"Page {number} header is not aligned at the top: "
+                        f"{masthead_bounds}. Screenshot not saved."
+                    )
 
                 body = page.locator("body").inner_text().lower()
                 if "file bundle not present in this local installation" in body:
