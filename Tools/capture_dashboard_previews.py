@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Capture six clean 1920x1080 Streamlit screenshots, without Chrome browser UI.
 
-Runs against YOUR local dashboard at http://127.0.0.1:8501.
+Runs against YOUR local dashboard. Set DASHBOARD_PORT=8502 if needed.
 Only writes images to Assets/. It does not alter analysis code or push to GitHub.
 """
 from pathlib import Path
+import os
 import struct
 import sys
 
@@ -12,7 +13,7 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parent.parent
 ASSETS = ROOT / "Assets"
-APP_URL = "http://127.0.0.1:8501"
+APP_URL = f"http://127.0.0.1:{os.environ.get('DASHBOARD_PORT', '8501')}"
 
 # Exact tab names, verified against logistics_delivery_dashboard.py.
 PAGES = (
