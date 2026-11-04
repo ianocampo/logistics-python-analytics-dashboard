@@ -10,7 +10,7 @@ An end-to-end **Python analytics case study** combining seven synthetic datasets
 
 [![Clean executive overview of the six-page Python logistics and returns dashboard](Assets/dashboard_01_overview_1920x1080.png)](Assets/dashboard_01_overview_1920x1080.png)
 
-*Actual Streamlit dashboard preview — Page 01 / 06. [Explore the deployed interactive app](https://ianocampo-logistics-analytics-python-001.streamlit.app). Full six-page functional QA is in progress.*
+*Actual Streamlit dashboard preview — Page 01 / 06. [Explore the deployed interactive app](https://ianocampo-logistics-analytics-python-001.streamlit.app). The project owner has completed the live dashboard functional checklist.*
 
 ### The business question
 
@@ -112,7 +112,7 @@ For the **analysis notebooks**, use [requirements-analysis.txt](requirements-ana
 
 [**Open the public interactive dashboard**](https://ianocampo-logistics-analytics-python-001.streamlit.app) · Deployed from this GitHub repository using the app entry point **logistics_delivery_dashboard.py** and root-level **requirements.txt**.
 
-The Overview has been observed rendering successfully in a browser after resolving an initial frontend-loading issue. **Functional QA of all six pages, courier filters, and CSV download controls is still in progress.**
+The Overview was observed rendering successfully after resolving an initial browser-side JavaScript module-loading issue. **Project-owner live browser QA: PASS (November 4, 2026)** — all six pages, courier filter, Overview date-screening selector, and a CSV download were checked by the project owner. **Separate repository inspection: PASS** — the dashboard source includes these controls and the referenced data and export files are committed. These results do not constitute an independently automated end-to-end browser test; repeat testing may be needed after Streamlit or dependency updates.
 
 ## Data boundaries & attribution
 
