@@ -6,11 +6,11 @@ An end-to-end **Python analytics case study** combining seven synthetic datasets
 
 **Ian Ocampo** · Business & Digital Systems Integrator · Data Analytics & Business Intelligence
 
-[**Dashboard Gallery**](#six-page-dashboard-gallery) · [**Executive Case Study (PDF)**](Docs/Executive_Report.pdf) · [**One-Page Insights (PDF)**](Docs/One_Page_Insights_Summary.pdf) · [**Python Notebook**](Notebook/Logistics_Analysis_Documented.ipynb) · [**Data Analytics Portfolio**](https://data.ianocamposystems.com)
+[**Explore Live Dashboard**](https://ianocampo-logistics-analytics-python-001.streamlit.app) · [**Dashboard Gallery**](#six-page-dashboard-gallery) · [**Executive Case Study (PDF)**](Docs/Executive_Report.pdf) · [**One-Page Insights (PDF)**](Docs/One_Page_Insights_Summary.pdf) · [**Python Notebook**](Notebook/Logistics_Analysis_Documented.ipynb) · [**Data Analytics Portfolio**](https://data.ianocamposystems.com)
 
 [![Clean executive overview of the six-page Python logistics and returns dashboard](Assets/dashboard_01_overview_1920x1080.png)](Assets/dashboard_01_overview_1920x1080.png)
 
-*Actual Streamlit dashboard preview — Page 01 / 06. Click to view full resolution. The public interactive app has not yet been deployed.*
+*Actual Streamlit dashboard preview — Page 01 / 06. [Explore the deployed interactive app](https://ianocampo-logistics-analytics-python-001.streamlit.app). Full six-page functional QA is in progress.*
 
 ### The business question
 
@@ -108,9 +108,11 @@ Streamlit uses the project-relative bundled datasets and public-data fallbacks. 
 
 For the **analysis notebooks**, use [requirements-analysis.txt](requirements-analysis.txt) and execute the documented workflow in order. The main notebook was developed in an existing workstation project folder; if running it from a fresh clone, review the first cell's local project-root fallback and point it to the cloned repository before rerunning the full notebook. The dashboard itself uses project-relative paths.
 
-### Deploy later to Streamlit Community Cloud
+### Live Streamlit Community Cloud deployment
 
-The repository contains the app entry point **logistics_delivery_dashboard.py** and root-level **requirements.txt**. A public Streamlit Cloud URL will be added **only after deployment and live testing** across all six pages.
+[**Open the public interactive dashboard**](https://ianocampo-logistics-analytics-python-001.streamlit.app) · Deployed from this GitHub repository using the app entry point **logistics_delivery_dashboard.py** and root-level **requirements.txt**.
+
+The Overview has been observed rendering successfully in a browser after resolving an initial frontend-loading issue. **Functional QA of all six pages, courier filters, and CSV download controls is still in progress.**
 
 ## Data boundaries & attribution
 
