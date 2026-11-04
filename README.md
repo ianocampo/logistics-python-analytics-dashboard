@@ -106,7 +106,16 @@ python -m streamlit run logistics_delivery_dashboard.py
 
 Streamlit uses the project-relative bundled datasets and public-data fallbacks. The application displays **synthetic demonstration data**, requires no private credentials and does not edit source records.
 
-For the **analysis notebooks**, use [requirements-analysis.txt](requirements-analysis.txt) and execute the documented workflow in order. The main notebook was developed in an existing workstation project folder; if running it from a fresh clone, review the first cell's local project-root fallback and point it to the cloned repository before rerunning the full notebook. The dashboard itself uses project-relative paths.
+For the **analysis notebooks**, install the separate dependencies and start Jupyter from the **repository root**:
+
+~~~bash
+python -m pip install -r requirements-analysis.txt
+python -m notebook
+~~~
+
+Open [the documented analytics notebook](Notebook/Logistics_Analysis_Documented.ipynb) or [the read-only source audit](Notebook/Source_Data_Audit.ipynb). Their first code cells now discover the seven bundled `Data/Raw` CSVs from the repository root **or** `Notebook/` subfolder, with the original iMac project location retained only as a backward-compatible fallback. For the main notebook use **Kernel → Restart Kernel and Run All Cells**. Execution may write **derived files under `Outputs/`** but does not modify the seven raw source CSVs. The dashboard itself remains independent and uses project-relative paths.
+
+**Reproducibility status:** Code paths and files have been statically audited for fresh-clone portability; a full clean-environment, end-to-end notebook replay still needs a separate runtime validation.
 
 ### Live Streamlit Community Cloud deployment
 
