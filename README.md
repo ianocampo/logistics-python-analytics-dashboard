@@ -36,7 +36,7 @@ An end-to-end **Python analytics case study** combining seven synthetic datasets
 
 ## Six-page dashboard gallery
 
-Six **clean 1920 × 1080 captures** taken from the actual Streamlit application. Click an image to inspect its full-resolution PNG. These are previews, **not yet a publicly deployed interactive app**.
+Six **clean 1920 × 1080 captures** taken from the actual Streamlit application. Click an image to inspect its full-resolution PNG, or [open the live, interactive six-page Streamlit dashboard](https://ianocampo-logistics-analytics-python-001.streamlit.app) to explore filters, charts, and evidence downloads.
 
 ### 01 — Overview | Operational snapshot
 
