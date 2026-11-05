@@ -1,0 +1,78 @@
+name: Build authentic Python project social preview
+
+on:
+  push:
+    paths:
+      - ".github/workflows/build-social-preview.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out existing dashboard evidence
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install Pillow
+        run: python -m pip install Pillow
+      - name: Compose preview from actual dashboard screenshot
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageDraw, ImageFont
+
+          source = Path("Assets/dashboard_01_overview_1920x1080.png")
+          assert source.exists(), "The approved screenshot is missing"
+          actual = Image.open(source).convert("RGB")
+          assert actual.size == (1920,1080), f"Unexpected screenshot dimensions: {actual.size}"
+          W,H=1280,640
+          bg=Image.new("RGB",(W,H))
+          px=bg.load()
+          for y in range(H):
+              for x in range(W):
+                  a=x/W
+                  px[x,y]=(round(10+8*a),round(29+35*a),round(42+29*a))
+          draw=ImageDraw.Draw(bg)
+          family="/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
+          bold="/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+          def f(n,b=False): return ImageFont.truetype(bold if b else family,n)
+          aqua=(94,234,212); white=(248,252,255); muted=(199,218,223)
+          draw.rounded_rectangle((47,44,237,50),radius=4,fill=aqua)
+          draw.text((48,84),"PYTHON  /  STREAMLIT  /  ANALYTICS",font=f(17,True),fill=aqua)
+          draw.text((46,165),"Logistics, Delivery",font=f(43,True),fill=white)
+          draw.text((46,223),"& Returns Analytics",font=f(42,True),fill=white)
+          draw.text((48,330),"15,000 shipment records",font=f(22),fill=muted)
+          draw.text((48,366),"Courier performance · Returns",font=f(20),fill=muted)
+          draw.text((48,400),"Data-quality validation",font=f(20),fill=muted)
+          draw.rounded_rectangle((46,523,412,573),outline=aqua,width=2,radius=10)
+          draw.text((66,539),"VIEW THE LIVE DASHBOARD",font=f(17,True),fill=white)
+          draw.text((47,606),"data.ianocamposystems.com",font=f(16),fill=(168,213,217))
+          x,y,w,h=553,112,681,409
+          draw.rounded_rectangle((x-4,y-4,x+w+4,y+h+4),radius=17,fill=(112,220,217))
+          draw.rounded_rectangle((x,y,x+w,y+h),radius=14,fill=(228,249,247))
+          inner=(x+14,y+14,w-28,h-28)
+          scale=min(inner[2]/actual.width,inner[3]/actual.height)
+          sz=(round(actual.width*scale),round(actual.height*scale))
+          resized=actual.resize(sz,Image.Resampling.LANCZOS)
+          bg.paste(resized,(inner[0]+(inner[2]-sz[0])//2,inner[1]+(inner[3]-sz[1])//2))
+          draw=ImageDraw.Draw(bg)
+          draw.rounded_rectangle((576,533,1210,572),radius=8,fill=(13,46,55))
+          draw.text((602,545),"ACTUAL STREAMLIT SCREENSHOT · SIX-PAGE APPLICATION",font=f(13,True),fill=(213,239,240))
+          dest=Path("assets/social-preview.png")
+          dest.parent.mkdir(parents=True,exist_ok=True)
+          bg.save(dest,optimize=True)
+          print("Saved",dest, "with exact original screenshot pixels rescaled.")
+          PY
+      - name: Publish preview image
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f -- assets/social-preview.png
+          if ! git diff --cached --quiet; then
+            git commit -m "Add branded preview using actual Streamlit dashboard screenshot"
+            git push
+          fi
