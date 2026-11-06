@@ -6,11 +6,43 @@ An end-to-end **Python analytics case study** combining seven synthetic datasets
 
 **Ian Ocampo** · Business & Digital Systems Integrator · Data Analytics & Business Intelligence
 
-[**Explore Live Dashboard**](https://ianocampo-logistics-analytics-python-001.streamlit.app) · [**Dashboard Gallery**](#six-page-dashboard-gallery) · [**Executive Case Study (PDF)**](Docs/Executive_Report.pdf) · [**One-Page Insights (PDF)**](Docs/One_Page_Insights_Summary.pdf) · [**Python Notebook**](Notebook/Logistics_Analysis_Documented.ipynb) · [**Data Analytics Portfolio**](https://data.ianocamposystems.com)
+[**Explore Live Dashboard**](https://ianocampo-logistics-analytics-python-001.streamlit.app) · [**Main Project Files**](#main-project-files--start-here) · [**Dashboard Gallery**](#six-page-dashboard-gallery) · [**Executive Case Study (PDF)**](Docs/Executive_Report.pdf) · [**One-Page Insights (PDF)**](Docs/One_Page_Insights_Summary.pdf) · [**Python Notebook**](Notebook/Logistics_Analysis_Documented.ipynb) · [**Data Analytics Portfolio**](https://data.ianocamposystems.com)
 
 [![Clean executive overview of the six-page Python logistics and returns dashboard](Assets/dashboard_01_overview_1920x1080.png)](Assets/dashboard_01_overview_1920x1080.png)
 
 *Actual Streamlit dashboard preview — Page 01 / 06. [Explore the deployed interactive app](https://ianocampo-logistics-analytics-python-001.streamlit.app). The project owner has completed the live dashboard functional checklist.*
+
+## Main Project Files — Start Here
+
+Every link below opens the **actual project deliverable**, rather than requiring visitors to browse GitHub folders. Start with the executive report or live dashboard for business context; use the notebook and source code to inspect the Python work.
+
+### For clients and business reviewers
+
+| Open | What it contains |
+| :--- | :--- |
+| [**Live Analytics Dashboard**](https://ianocampo-logistics-analytics-python-001.streamlit.app) | Interactive six-page Streamlit dashboard with filters, charts, and data evidence |
+| [**Executive Case Study — PDF**](Docs/Executive_Report.pdf) | Business problem, operating KPIs, charts, data reliability, conclusions, and recommendations |
+| [**One-Page Insights Summary — PDF**](Docs/One_Page_Insights_Summary.pdf) | Concise management summary of the key findings |
+| [**Executive Summary — TXT**](Executive_Summary.txt) | Quick high-level project overview and decision priorities |
+
+### For technical reviewers and capstone evaluators
+
+| Open | What it contains |
+| :--- | :--- |
+| [**Python Analysis Notebook — .ipynb**](Notebook/Logistics_Analysis_Documented.ipynb) | Data loading, documented cleaning, calculations, visualizations, and validation |
+| [**Streamlit Dashboard Code — .py**](logistics_delivery_dashboard.py) | Python code that powers the interactive application |
+| [**Seven Raw CSV Datasets**](Data/Raw) | Original source data, preserved for auditability |
+| [**Seven Cleaned CSV Datasets**](Outputs/Cleaned_Data) | Prepared tables exported by the Jupyter workflow |
+| [**Five Exported Python Charts — PNG**](Outputs/Charts) | Required standalone analytical visualizations |
+| [**Cleaning & QA Evidence**](Outputs/Cleaning_Evidence) | Cleaning-rule register, reconciliation, and the saved 85-check validation CSV |
+| [**Dashboard Reporting Data**](Outputs/Dashboard_Data) | Four prepared datasets supporting interactive dashboard reporting |
+| [**Source Data Dictionary**](Data/Raw/README_DATA_DICTIONARY.txt) | Definitions of the original dataset structure and fields |
+
+**Reproduction setup:** [Streamlit dependencies](requirements.txt) · [Jupyter dependencies](requirements-analysis.txt) · [Read-only source audit notebook](Notebook/Source_Data_Audit.ipynb) · [Public data guide](Public_Data/DATA_GUIDE.md)
+
+**Data flow:** Raw CSVs → cleaning in Jupyter → cleaned CSVs → KPIs & charts → validated dashboard exports → Streamlit dashboard → executive report.
+
+---
 
 ### The business question
 
