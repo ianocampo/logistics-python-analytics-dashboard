@@ -1,171 +1,141 @@
 # Logistics, Delivery & Returns Intelligence
 
-**From 15,000 shipment records to clearer delivery and returns decisions.**
+**Python analytics case study | From shipment records to better operational decisions**
 
-An end-to-end **Python analytics case study** combining seven synthetic datasets, documented cleaning and data-quality validation, and a **six-page interactive Streamlit dashboard**. The project examines what the records show, what they cannot reliably prove, and which operating questions deserve action.
+An end-to-end analytics project using seven linked synthetic datasets, a documented Python cleaning and validation workflow, five original charts, and a six-page interactive Streamlit dashboard.
 
-**Ian Ocampo** · Business & Digital Systems Integrator · Data Analytics & Business Intelligence
+> **Business question:** How well are we delivering, and what drives recorded return requests?
+>
+> **What this work demonstrates:** Turning imperfect operational records into measurable findings, transparent limitations, and practical management recommendations—without claiming unverified results.
 
-[**Explore Live Dashboard**](https://ianocampo-logistics-analytics-python-001.streamlit.app) · [**Main Project Files**](#main-project-files--start-here) · [**Dashboard Gallery**](#six-page-dashboard-gallery) · [**Executive Case Study (PDF)**](Docs/Executive_Report.pdf) · [**One-Page Insights (PDF)**](Docs/One_Page_Insights_Summary.pdf) · [**Python Notebook**](Notebook/Logistics_Analysis_Documented.ipynb) · [**Data Analytics Portfolio**](https://data.ianocamposystems.com)
+**[Explore the Live Dashboard](https://ianocampo-logistics-analytics-python-001.streamlit.app)** · **[Read the One-Page Insights](Docs/One_Page_Insights_Summary.pdf)** · **[Executive Case Study](Docs/Executive_Report.pdf)** · **[Data Analytics Portfolio](https://data.ianocamposystems.com)**
 
-[![Clean executive overview of the six-page Python logistics and returns dashboard](Assets/dashboard_01_overview_1920x1080.png)](Assets/dashboard_01_overview_1920x1080.png)
+## Explore the project — direct access
 
-*Actual Streamlit dashboard preview — Page 01 / 06. [Explore the deployed interactive app](https://ianocampo-logistics-analytics-python-001.streamlit.app). The project owner has completed the live dashboard functional checklist.*
+All core deliverables open directly from this table. Nothing needs to be moved to the repository root.
 
-## Main Project Files — Start Here
-
-Every link below opens the **actual project deliverable**, rather than requiring visitors to browse GitHub folders. Start with the executive report or live dashboard for business context; use the notebook and source code to inspect the Python work.
-
-### For clients and business reviewers
-
-| Open | What it contains |
-| :--- | :--- |
-| [**Live Analytics Dashboard**](https://ianocampo-logistics-analytics-python-001.streamlit.app) | Interactive six-page Streamlit dashboard with filters, charts, and data evidence |
-| [**Executive Case Study — PDF**](Docs/Executive_Report.pdf) | Business problem, operating KPIs, charts, data reliability, conclusions, and recommendations |
-| [**One-Page Insights Summary — PDF**](Docs/One_Page_Insights_Summary.pdf) | Concise management summary of the key findings |
-| [**Executive Summary — TXT**](Executive_Summary.txt) | Quick high-level project overview and decision priorities |
-
-### For technical reviewers and capstone evaluators
-
-| Open | What it contains |
-| :--- | :--- |
-| [**Python Analysis Notebook — .ipynb**](Notebook/Logistics_Analysis_Documented.ipynb) | Data loading, documented cleaning, calculations, visualizations, and validation |
-| [**Streamlit Dashboard Code — .py**](logistics_delivery_dashboard.py) | Python code that powers the interactive application |
-| [**Seven Raw CSV Datasets**](Data/Raw) | Original source data, preserved for auditability |
-| [**Seven Cleaned CSV Datasets**](Outputs/Cleaned_Data) | Prepared tables exported by the Jupyter workflow |
-| [**Five Exported Python Charts — PNG**](Outputs/Charts) | Required standalone analytical visualizations |
-| [**Cleaning & QA Evidence**](Outputs/Cleaning_Evidence) | Cleaning-rule register, reconciliation, and the saved 85-check validation CSV |
-| [**Dashboard Reporting Data**](Outputs/Dashboard_Data) | Four prepared datasets supporting interactive dashboard reporting |
-| [**Source Data Dictionary**](Data/Raw/README_DATA_DICTIONARY.txt) | Definitions of the original dataset structure and fields |
-
-**Reproduction setup:** [Streamlit dependencies](requirements.txt) · [Jupyter dependencies](requirements-analysis.txt) · [Read-only source audit notebook](Notebook/Source_Data_Audit.ipynb) · [Public data guide](Public_Data/DATA_GUIDE.md)
-
-**Data flow:** Raw CSVs → cleaning in Jupyter → cleaned CSVs → KPIs & charts → validated dashboard exports → Streamlit dashboard → executive report.
-
----
-
-### The business question
-
-> **How well are we delivering, and what drives recorded return requests?**
-
-**Value of the work:** A clear, inspectable view of operational outcomes, courier comparisons, return-request patterns, and critical source-data limitations—with evidence-backed recommendations instead of unsupported performance claims.
-
----
+| Deliverable | Open the actual file | Why it matters |
+| :--- | :--- | :--- |
+| **Executive Summary (12 bullets)** | [Executive_Summary.txt](Executive_Summary.txt) | Fast overview of the scope, findings and priorities |
+| **One-Page Insights Summary** | [One_Page_Insights_Summary.pdf](Docs/One_Page_Insights_Summary.pdf) | The most concise business-facing summary |
+| **Executive Case Study** | [Executive_Report.pdf](Docs/Executive_Report.pdf) | Detailed business narrative and evidence |
+| **Python analysis notebook** | [Logistics_Analysis_Documented.ipynb](Notebook/Logistics_Analysis_Documented.ipynb) | Cleaning, calculations, plots and saved validation |
+| **Cleaned customers dataset** | [customers_clean.csv](Outputs/Cleaned_Data/customers_clean.csv) | 5,000 prepared customer records |
+| **Cleaned products dataset** | [products_clean.csv](Outputs/Cleaned_Data/products_clean.csv) | 800 prepared product records |
+| **Five exported charts (PNG)** | [Open chart folder](Outputs/Charts) | Standalone Python visualizations |
+| **Six dashboard screenshots** | [Open screenshot folder](Assets) | Original 1920 × 1080 application captures |
+| **Streamlit application source** | [logistics_delivery_dashboard.py](logistics_delivery_dashboard.py) | Inspectable interactive dashboard code |
 
 ## Executive snapshot
 
-| Indicator | Verified project finding |
-| :--- | :--- |
-| **Order & shipment coverage** | **15,000** distinct orders; **15,000** shipment records |
-| **Recorded Delivered status** | **11,680 / 15,000 (77.87%)** of shipments |
-| **Average recorded delivery duration** | **4.00 days**, across **11,122** eligible records before chronology screening |
-| **After chronology screening** | **4.02 days**, across **5,667** records |
-| **Orders with return requests** | **1,200 / 15,000 (8.00%)** |
-| **Source-data preparation** | **387** exact duplicate rows removed from **89,888** source rows |
-| **Documented data-quality validation** | **85 / 85** checks recorded as PASS |
+| Measure | Verified observation |
+| :--- | ---: |
+| Orders and shipments | **15,000** each |
+| Shipments marked Delivered | **11,680 / 15,000 (77.87%)** |
+| Average recorded delivery duration | **4.00 days**, based on **11,122** eligible shipments |
+| Stricter chronology-screened duration | **4.02 days**, based on **5,667** shipments |
+| Orders with a recorded return request | **1,200 / 15,000 (8.00%)** |
+| Exact duplicate rows removed | **387**, from **89,888** original rows |
+| Saved validation register | **85 / 85 PASS** |
 
-> **Interpretation matters:** A recorded *Delivered* status is not proof of on-time delivery. The 8.00% metric measures **orders with a return request**, not completed or item-specific returns. These are historical synthetic-data observations, not live business KPIs.
+**Interpretation boundary:** Delivered status does not establish on-time SLA compliance. The 8.00% figure counts orders with requests—not completed, confirmed item-level returns. The chronology-screened values describe a different sample, not a before-and-after improvement.
 
-## Six-page dashboard gallery
+## What the findings mean for a business
 
-Six **clean 1920 × 1080 captures** taken from the actual Streamlit application. Click an image to inspect its full-resolution PNG, or [open the live, interactive six-page Streamlit dashboard](https://ianocampo-logistics-analytics-python-001.streamlit.app) to explore filters, charts, and evidence downloads.
-
-### 01 — Overview | Operational snapshot
-
-The **full-width executive overview screenshot appears at the top of this README**. [Open the full-resolution overview](Assets/dashboard_01_overview_1920x1080.png). The overview makes its delivery-duration screening sample explicit and separates recorded shipment status from verified service-level performance.
-
-| **02 — Courier Performance** | **03 — Returns Intelligence** |
-| :--- | :--- |
-| [![Courier performance dashboard comparing duration estimates before and after date screening](Assets/dashboard_02_courier_performance_1920x1080.png)](Assets/dashboard_02_courier_performance_1920x1080.png) | [![Returns intelligence dashboard with reason distribution and category-associated request rates](Assets/dashboard_03_returns_intelligence_1920x1080.png)](Assets/dashboard_03_returns_intelligence_1920x1080.png) |
-| Compares courier averages across different **data screening cohorts**, not different time periods. | Examines recorded request reasons and category **associations**, not verified returned items. |
-
-| **04 — Data Quality** | **05 — Executive Brief** |
-| :--- | :--- |
-| [![Data quality dashboard showing five overlapping exception indicators](Assets/dashboard_04_data_quality_1920x1080.png)](Assets/dashboard_04_data_quality_1920x1080.png) | [![Executive brief dashboard showing operational priorities and supporting evidence](Assets/dashboard_05_executive_brief_1920x1080.png)](Assets/dashboard_05_executive_brief_1920x1080.png) |
-| Documents overlapping date and status conflicts before conclusions are drawn. | Connects findings to two practical, measurable improvement priorities. |
-
-### 06 — Data & Methodology | Reproducibility and evidence
-
-[![Data and methodology dashboard presenting original datasets, duplicate counts and documented preparation](Assets/dashboard_06_data_methodology_1920x1080.png)](Assets/dashboard_06_data_methodology_1920x1080.png)
-
-Makes the source tables, preparation choices, KPI definitions, and public evidence downloads accessible from the dashboard.
-
-## Findings that influence decisions
-
-**1. Confirm event chronology before using delivery metrics as operating targets.** The source contains **7,436** payment-before-order flags, **7,397** shipping-before-order flags, and **3,707** shipment-status/date conflicts. These checks overlap; their counts must not be added together to estimate unique affected orders.
-
-**2. Be careful when comparing couriers.** The baseline recorded-duration sample contains **11,122** eligible shipments averaging **4.00 days**; stricter chronology screening retains **5,667** averaging **4.02 days**. Courier comparisons are sensitive to which records are eligible. This does not demonstrate courier superiority or a performance improvement.
-
-**3. Improve return attribution before changing category strategy.** There are **1,200** orders with return requests (**8.00%**). The most common recorded reason is **Changed mind** (**182** requests; **15.17%** of requests). **Home & Kitchen** appears in **352 / 4,076 (8.64%)** orders containing that category with a return request; this is **not** an item-level returned-product rate.
-
-### Recommended priorities
-
-| Priority | Proposed action | Suggested measure |
+| Evidence | Business implication | Decision supported |
 | :--- | :--- | :--- |
-| **01 · Data reliability** | Reconcile order, payment, shipment and delivery timestamps/statuses before operational reporting. | Count and rate of unresolved chronology/status exceptions |
-| **02 · Returns intelligence** | Capture verified returned-item identifiers, reasons and outcomes to support item-level investigations. | Completeness of item attribution and validated item-level return metrics |
+| **7,436** payment-before-order flags, **7,397** shipping-before-order flags, and **3,707** shipment status/date conflicts | Source event sequencing requires investigation; these exception categories overlap | Reconcile timestamps and state transitions before setting service targets |
+| Courier averages are close and rankings change after more restrictive date screening | Vendor rankings are sensitive to which shipments qualify for measurement | Define consistent eligibility and sample-size rules before benchmarking providers |
+| **1,200** recorded return requests; **Changed mind** leads at **182 (15.17%)** | Recorded reasons guide investigation but do not prove root causes or closed returns | Capture standardized reasons and request-to-resolution outcomes |
+| **Home & Kitchen: 352 / 4,076 (8.64%)** order-category association | Multi-category orders do not identify the product actually returned | Add returned item/SKU identification before product-specific interventions |
 
-These are **recommendations derived from the demonstration data**, not claims of implemented process changes or realized savings.
+### Recommended operating priorities
 
-## Project structure & evidence
+**01 — Data reliability.** Establish a cross-system chronology and status exception register, assign review ownership, and measure unresolved exceptions and validated-event coverage.
 
-| Location | Purpose |
+**02 — Returns attribution.** Capture returned SKU IDs, standardized reasons, and closed-case outcomes. Track completeness before interpreting category patterns as product-level return rates.
+
+These are **proposed actions** based on a synthetic demonstration dataset—not claims of implemented improvements, realized savings, or proven courier superiority.
+
+## Interactive six-page dashboard
+
+[![Actual 1920×1080 Streamlit operational overview with shipment status and recorded delivery duration](Assets/dashboard_01_overview_1920x1080.png)](Assets/dashboard_01_overview_1920x1080.png)
+
+*Actual Streamlit screenshot — Overview (01/06). [Open the live dashboard](https://ianocampo-logistics-analytics-python-001.streamlit.app) or [inspect the full-resolution image](Assets/dashboard_01_overview_1920x1080.png). Screenshots capture the top viewport, not necessarily the entire scrollable page.*
+
+<details>
+<summary><strong>Explore the other five dashboard pages</strong></summary>
+
+| Dashboard | Original screenshot | Analytical purpose |
+| :--- | :--- | :--- |
+| **02 — Courier Performance** | [View 1920×1080 PNG](Assets/dashboard_02_courier_performance_1920x1080.png) | Baseline versus chronology-screened courier comparisons |
+| **03 — Returns Intelligence** | [View 1920×1080 PNG](Assets/dashboard_03_returns_intelligence_1920x1080.png) | Request reasons and order-category associations |
+| **04 — Data Quality** | [View 1920×1080 PNG](Assets/dashboard_04_data_quality_1920x1080.png) | Overlapping timeline and state exception flags |
+| **05 — Executive Brief** | [View 1920×1080 PNG](Assets/dashboard_05_executive_brief_1920x1080.png) | Supported business priorities |
+| **06 — Data & Methodology** | [View 1920×1080 PNG](Assets/dashboard_06_data_methodology_1920x1080.png) | Data lineage, definitions and evidence downloads |
+
+</details>
+
+### Five original Python chart exports
+
+| Original chart | File |
 | :--- | :--- |
-| [**Dashboard application**](logistics_delivery_dashboard.py) | Six-page interactive Streamlit app with sidebar courier controls |
-| [**Primary documented notebook**](Notebook/Logistics_Analysis_Documented.ipynb) | Python workflow, transformation steps and final validation evidence |
-| [**Source-data audit notebook**](Notebook/Source_Data_Audit.ipynb) | Initial assessment of the seven source tables |
-| [**Raw CSVs**](Data/Raw) · [**Cleaned CSVs**](Outputs/Cleaned_Data) | Seven source datasets and seven cleaned working tables |
-| [**Data quality evidence**](Outputs/Cleaning_Evidence) | Rules, reconciliation, missing-value decisions and 85-check validation export |
-| [**Dashboard data tables**](Outputs/Dashboard_Data) · [**Public evidence bundle**](Public_Data) | Prepared analytic tables and inspectable public sources/exports |
-| [**Five analytical charts**](Outputs/Charts) · [**Six-page gallery assets**](Assets) | Standalone visualization evidence and dashboard previews |
-| [**Executive Case Study (PDF)**](Docs/Executive_Report.pdf) | Executive-facing narrative, findings, methodology and recommendations |
-| [**One-Page Insights (PDF)**](Docs/One_Page_Insights_Summary.pdf) · [**Executive Summary (TXT)**](Executive_Summary.txt) | Condensed project takeaways |
+| Shipment status distribution | [shipment_status_distribution.png](Outputs/Charts/shipment_status_distribution.png) |
+| Delivery lead-time distribution | [delivery_lead_time_histogram.png](Outputs/Charts/delivery_lead_time_histogram.png) |
+| Courier average delivery days | [courier_average_delivery_days.png](Outputs/Charts/courier_average_delivery_days.png) |
+| Recorded return reasons | [return_reasons_distribution.png](Outputs/Charts/return_reasons_distribution.png) |
+| Category-associated return-request rates | [category_return_request_rate.png](Outputs/Charts/category_return_request_rate.png) |
 
-### Analytical workflow
+## Method and evidence
 
-**7 source CSVs → source audit → cleaning and duplicate reconciliation → business metrics and quality flags → 85 documented validation checks → prepared dashboard tables → six-page Streamlit dashboard → executive recommendations**
+**Seven original CSVs → source audit → deduplication and field-specific preparation → joins and data-quality checks → executive metrics and Matplotlib charts → validated reporting exports → Plotly/Streamlit dashboard → evidence-backed recommendations.**
 
-**Technology:** Python · pandas · Jupyter Notebook · Matplotlib · Plotly · Streamlit · CSV evidence exports · Git/GitHub.
+The notebook documents **387 exact duplicates** across customer, order, and order-item records; resulting prepared files contain **89,501 rows across seven different entities**. That combined row count is *not* a count of unique orders. Missing values, inconsistent source events, and orphan relationships are documented rather than silently corrected.
 
-## Run the dashboard
+**Technology:** Python · pandas · NumPy · Jupyter · Matplotlib · Plotly · Streamlit · GitHub.
 
-From the repository root in a Python environment:
+| Supporting material | Purpose |
+| :--- | :--- |
+| [Original seven CSVs](Data/Raw) | Preserved source records |
+| [Seven cleaned datasets](Outputs/Cleaned_Data) | Analytical working tables |
+| [Cleaning evidence](Outputs/Cleaning_Evidence) | Before/after reconciliation, decisions and saved QA register |
+| [Dashboard exports](Outputs/Dashboard_Data) | Four dashboard-ready analytical tables |
+| [Business findings and recommendations](Outputs/Tables) | Structured decision-support outputs |
+| [Public data and methodology guide](Public_Data/DATA_GUIDE.md) | Data definitions, denominators, and downloadable evidence |
+| [Source data dictionary](Data/Raw/README_DATA_DICTIONARY.txt) | Original supplied source documentation, retained unchanged |
+| [Source data audit notebook](Notebook/Source_Data_Audit.ipynb) | Read-only source inventory before preparation |
+
+The [original source dictionary](Data/Raw/README_DATA_DICTIONARY.txt) describes the input data as synthetically generated. It is preserved as source documentation; the public [data guide](Public_Data/DATA_GUIDE.md) explains how the records are used in this analytics project.
+
+## Run the project locally
+
+Install the dashboard dependencies from the repository root:
 
 ~~~bash
 python -m pip install -r requirements.txt
 python -m streamlit run logistics_delivery_dashboard.py
 ~~~
 
-Streamlit uses the project-relative bundled datasets and public-data fallbacks. The application displays **synthetic demonstration data**, requires no private credentials and does not edit source records.
-
-For the **analysis notebooks**, install the separate dependencies and start Jupyter from the **repository root**:
+For the analytical notebooks, install their separate dependencies and launch Jupyter **from the repository root**:
 
 ~~~bash
 python -m pip install -r requirements-analysis.txt
 python -m notebook
 ~~~
 
-Open [the documented analytics notebook](Notebook/Logistics_Analysis_Documented.ipynb) or [the read-only source audit](Notebook/Source_Data_Audit.ipynb). Their first code cells now discover the seven bundled `Data/Raw` CSVs from the repository root **or** `Notebook/` subfolder, with the original iMac project location retained only as a backward-compatible fallback. For the main notebook use **Kernel → Restart Kernel and Run All Cells**. Execution may write **derived files under `Outputs/`** but does not modify the seven raw source CSVs. The dashboard itself remains independent and uses project-relative paths.
+Open the [main notebook](Notebook/Logistics_Analysis_Documented.ipynb) and use **Restart Kernel and Run All Cells**. The notebook searches for the bundled original data from the repository root or notebook folder. Re-execution may regenerate derived exports under Outputs; it does not intentionally modify the original Data/Raw CSVs.
 
-**Reproducibility status:** Code paths and files have been statically audited for fresh-clone portability; a full clean-environment, end-to-end notebook replay still needs a separate runtime validation.
+**Evidence status:** The published notebook contains saved executed cells and no saved error outputs; its Step 109 validation log records **85/85 PASS** checks. This does **not** substitute for an independently witnessed full fresh-clone run. The deployed app reads the committed reporting exports.
 
-### Live Streamlit Community Cloud deployment
+## Data boundaries
 
-[**Open the public interactive dashboard**](https://ianocampo-logistics-analytics-python-001.streamlit.app) · Deployed from this GitHub repository using the app entry point **logistics_delivery_dashboard.py** and root-level **requirements.txt**.
-
-The Overview was observed rendering successfully after resolving an initial browser-side JavaScript module-loading issue. **Project-owner live browser QA: PASS (November 4, 2026)** — all six pages, courier filter, Overview date-screening selector, and a CSV download were checked by the project owner. **Separate repository inspection: PASS** — the dashboard source includes these controls and the referenced data and export files are committed. These results do not constitute an independently automated end-to-end browser test; repeat testing may be needed after Streamlit or dependency updates.
-
-## Data boundaries & attribution
-
-- Data is **synthetic training/demo data**, not a real client's private information or a live production system.
-- Shipment-status shares are not independently verified on-time delivery measures.
-- Return-request rates are **order-level** and should not be reported as confirmed item returns.
-- Source quality indicators are overlapping review flags, not proven operational failures.
-- The README and screenshots show the **top viewport** of each dashboard page; additional content may extend below the fold.
-- See [the executive case study](Docs/Executive_Report.pdf), [the one-page summary](Docs/One_Page_Insights_Summary.pdf) and [the data methodology guide](Public_Data/DATA_GUIDE.md) for supporting explanations.
+- The datasets are **synthetic demonstration records**, not a client's private information or a live operational feed.
+- Recorded status shares are not independently verified delivery SLAs.
+- Return-request rates are order-level; categories may overlap and returned-item identity is unavailable.
+- Source quality indicators overlap and identify review candidates, not confirmed operational failures.
+- The dashboard operates as a read-only presentation of committed exports; no live refresh or realized improvement is claimed.
 
 ---
 
-**Prepared by Ian Ocampo**  
-Business & Digital Systems Integrator · Data Analytics & Business Intelligence  
-[Explore the Data Analytics Portfolio](https://data.ianocamposystems.com)
+**Ian Ocampo** · Business & Digital Systems Integrator · Data Analytics & Business Intelligence  
+[Explore the Data Analytics Portfolio](https://data.ianocamposystems.com) · [Open the Interactive Dashboard](https://ianocampo-logistics-analytics-python-001.streamlit.app)

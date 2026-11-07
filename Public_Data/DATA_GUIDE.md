@@ -1,12 +1,12 @@
 # Logistics, Delivery & Returns Intelligence — Public Data Guide
 
-This is a **public portfolio demonstration** built on seven **synthetic training CSV datasets**. The full original files are downloadable and included with the application. The demo is not a live client's operational system.
+This is a **public portfolio demonstration** built on seven **synthetic demonstration CSV datasets**. The full original files are downloadable and included with the application. The demo is not a live client's operational system.
 
 ## Project architecture
 - `Public_Data/Source/`: the **seven unmodified original CSV source files**. The same originals may also be present in `Data/Raw/` for local notebook work.
 - `Public_Data/Prepared/`: **four deduplicated reference CSVs**. These represent only exact-row deduplication and are **not** a claim that all source issues have been cleaned or corrected.
 - `Public_Data/Reporting_Exports/`: seven analysis-ready exports used by the interactive dashboard (including 15,000 shipments, 1,200 return requests, 33,165 order-category associations, 13 KPIs, a quality register, seven insights, and two recommendations).
-- `Public_Data/Charts/`: five original Matplotlib PNG figures from the analytical notebook.
+- `Public_Data/Charts/`: five downloadable Matplotlib PNG figures associated with the notebook outputs; the primary exported-chart paths are in Outputs/Charts/.
 - `logistics_delivery_dashboard.py`: public interactive dashboard (Streamlit + Plotly), read-only with respect to source CSVs.
 
 ## Original data to deduplication
@@ -31,4 +31,4 @@ The product-category standardization is part of the analytical notebook/reportin
 Start from the original CSVs and use the documented Python analysis notebook to reproduce the transformations, KPIs, and charts. Compare notebook-generated exports with `Public_Data/Reporting_Exports/`. The dashboard consumes validated CSV exports; it does not recompute every historical cleaning step at page load. When deploying to Streamlit Cloud, `Public_Data/Reporting_Exports/` serves as a portable fallback if local `Outputs/` is absent.
 
 ## Publication status
-Public synthetic demonstration data are intentionally included for inspection. This is not a private client dataset or a production-grade system with live data refreshes. Its known quality limitations are part of the capstone's documented findings. This public repository contains the client-facing case study, dashboard assets, and reproducibility evidence only.
+Public synthetic demonstration data are intentionally included for inspection. This is not a private client dataset or a production-grade system with live data refreshes. Its known quality limitations are part of the project's documented findings. This public repository contains the client-facing case study, dashboard assets, and reproducibility evidence only.
