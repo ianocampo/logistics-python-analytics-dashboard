@@ -1,0 +1,155 @@
+name: Notebook reproducibility (fresh-run)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/reproducibility.yml'
+      - 'Notebook/Logistics_Analysis_Documented.ipynb'
+      - 'Data/Raw/**'
+      - 'Outputs/**'
+      - 'requirements-analysis.txt'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  notebook-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: requirements-analysis.txt
+      - name: Install independent clean-run dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-analysis.txt
+          python -m pip install nbclient
+          python -m ipykernel install --user --name python3 --display-name Python3
+      - name: Execute full notebook and reconcile its regenerated artifacts
+        run: |
+          python - <<'PY'
+          import sys,json,hashlib,traceback,platform
+          from datetime import datetime,timezone
+          from pathlib import Path
+          import pandas as pd
+          import nbformat
+          from nbclient import NotebookClient
+          from PIL import Image
+
+          root=Path.cwd().resolve()
+          report_path=root/"qa_fresh_run_result.json"
+          report={
+            "run":"Fresh GitHub Actions Ubuntu 22.04+ runner, Python 3.11",
+            "timestamp":datetime.now(timezone.utc).isoformat(),
+            "status":"FAIL",
+            "python":platform.python_version(),
+            "notebook":"Notebook/Logistics_Analysis_Documented.ipynb",
+            "checks":{},
+            "errors":[]
+          }
+          def check(name,passed,detail):
+            report["checks"][name]={"pass":bool(passed),"detail":str(detail)}
+            if not passed:report["errors"].append(f"{name}: {detail}")
+          try:
+            originals=sorted((root/"Data/Raw").glob("*.csv"))
+            if len(originals)!=7:
+                raise AssertionError(f"Expected 7 raw CSVs, got {len(originals)}")
+            def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+            before_raw={p.name:sha(p) for p in originals}
+            expected_folders=["Outputs/Cleaned_Data","Outputs/Dashboard_Data","Outputs/Tables"]
+            baseline={}
+            for folder in expected_folders:
+                for p in sorted((root/folder).glob("*.csv")):
+                    baseline[str(p.relative_to(root))]=pd.read_csv(p,low_memory=False)
+            check("baseline_files_collected",len(baseline)>=14,
+                  f"{len(baseline)} cleaned, dashboard and analytical exports captured before execution")
+
+            nb_path=root/"Notebook/Logistics_Analysis_Documented.ipynb"
+            nb=nbformat.read(str(nb_path),as_version=4)
+            report["source_code_cells"]=sum(c.cell_type=="code" for c in nb.cells)
+            report["notebook_cwd"]=str(root)
+            print("Executing every notebook code cell in a brand-new Python 3.11 environment...",flush=True)
+            executed=NotebookClient(nb,timeout=900,kernel_name="python3",
+                resources={"metadata":{"path":str(root)}}).execute()
+            output_errors=[o.get("ename","") + ": " + o.get("evalue","")
+                for c in executed.cells if c.cell_type=="code"
+                for o in c.get("outputs",[]) if o.get("output_type")=="error"]
+            check("notebook_full_execution",len(output_errors)==0,
+                 "All cells completed without error" if not output_errors else "; ".join(output_errors[:3]))
+            image_outputs=sum(1 for c in executed.cells if c.cell_type=="code"
+                for o in c.get("outputs",[]) if "image/png" in o.get("data",{}))
+            check("matplotlib_outputs",image_outputs>=5,f"{image_outputs} code-cell PNG output(s)")
+            after_raw={p.name:sha(p) for p in originals}
+            check("raw_source_integrity",before_raw==after_raw,
+                "All seven raw CSV SHA-256 hashes unchanged" if before_raw==after_raw else "Raw CSV file contents changed")
+
+            mismatched=[]
+            for path,old in baseline.items():
+                p=root/path
+                if not p.is_file():
+                    mismatched.append(f"{path}: missing")
+                    continue
+                curr=pd.read_csv(p,low_memory=False)
+                try:
+                    pd.testing.assert_frame_equal(old,curr,check_dtype=False,
+                        check_exact=False,rtol=1e-8,atol=1e-6)
+                except AssertionError as ex:
+                    mismatched.append(f"{path}: {str(ex)[:240]}")
+            check("regenerated_csv_reconciliation",not mismatched,
+                  f"{len(baseline)} before/after CSVs matched semantically" if not mismatched else
+                  "; ".join(mismatched[:8]))
+            val=pd.read_csv(root/"Outputs/Cleaning_Evidence/step109_final_validation.csv")
+            pass_count=int((val["result"].astype(str)=="PASS").sum())
+            check("step109_validation",len(val)==85 and pass_count==85,
+                f"{pass_count}/{len(val)} checks marked PASS")
+
+            kpi=pd.read_csv(root/"Outputs/Dashboard_Data/executive_kpis.csv")
+            key={str(row.metric):float(row.value) for row in kpi.itertuples()}
+            expected={
+                "Total Orders":15000.0,
+                "Total Shipments":15000.0,
+                "Delivered Shipments":11680.0,
+                "Orders with Return Requests":1200.0,
+                "Baseline Eligible Lead Times":11122.0,
+                "Chronology-Screened Lead Times":5667.0,
+            }
+            check("executive_kpi_values",all(abs(key.get(k,float("nan"))-v)<1e-8 for k,v in expected.items()),
+                {k:key.get(k) for k in expected})
+            charts=sorted((root/"Outputs/Charts").glob("*.png"))
+            good=[]
+            for p in charts:
+                with Image.open(p) as img:
+                    good.append(img.format=="PNG" and img.width>=1200 and img.height>=700)
+            check("five_real_chart_exports",len(charts)==5 and all(good),
+                f"{len(charts)} PNG files, valid format and readable pixel dimensions")
+            report["source_data_sha256_unchanged"]=before_raw==after_raw
+            report["chart_count"]=len(charts)
+            report["saved_export_count"]=len(baseline)
+            report["status"]="PASS" if all(c["pass"] for c in report["checks"].values()) else "FAIL"
+          except Exception:
+            report["status"]="FAIL"
+            report["errors"].append(traceback.format_exc()[-4500:])
+          finally:
+            report_path.write_text(json.dumps(report,indent=2,ensure_ascii=False)+"\n")
+            print(json.dumps(report,indent=2,ensure_ascii=False))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: notebook-fresh-run-verification
+          path: qa_fresh_run_result.json
+          retention-days: 30
+      - name: Set GitHub Actions status from audit result
+        if: always()
+        run: |
+          python - <<'PY'
+          import json,sys
+          r=json.load(open('qa_fresh_run_result.json'))
+          print("AUDIT RESULT:",r.get("status"),flush=True)
+          sys.exit(0 if r.get("status")=="PASS" else 1)
+          PY

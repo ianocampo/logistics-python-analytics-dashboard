@@ -86,6 +86,12 @@ These are **proposed actions** based on a synthetic demonstration dataset—not 
 | Recorded return reasons | [return_reasons_distribution.png](Outputs/Charts/return_reasons_distribution.png) |
 | Category-associated return-request rates | [category_return_request_rate.png](Outputs/Charts/category_return_request_rate.png) |
 
+## Verified reproducibility
+
+**Fresh-run verification: PASS (November 7, 2026).** An isolated GitHub Actions runner on Python 3.11 executed the complete notebook without error, regenerated five charts, reconciled 14 published analytical CSV files, confirmed 85/85 saved QA checks, and verified unchanged SHA-256 hashes for all seven original CSVs. This is an actual end-to-end clean-environment run, distinct from the notebook's previously saved outputs.
+
+[**View the reproducibility evidence and scope**](Docs/REPRODUCIBILITY_VERIFICATION.md) · [**Inspect the successful validation run**](https://github.com/ianocampo/logistics-python-analytics-dashboard/actions/runs/42376035355)
+
 ## Method and evidence
 
 **Seven original CSVs → source audit → deduplication and field-specific preparation → joins and data-quality checks → executive metrics and Matplotlib charts → validated reporting exports → Plotly/Streamlit dashboard → evidence-backed recommendations.**
